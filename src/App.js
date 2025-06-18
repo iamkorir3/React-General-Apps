@@ -1,3 +1,4 @@
+import { Children, useState } from "react";
 import "./index.css";
 
 export default function App() {
@@ -34,6 +35,43 @@ export default function App() {
   );
 }
 
-function TextExpander() {
-  return <div>TODO</div>;
+function TextExpander({
+  children,
+  collapsedNumWords,
+  expandButtonText,
+  collapseButtonText,
+  buttonColor,
+}) {
+  const [shown, setShown] = useState(20);
+
+  function handleSetShown(show) {
+    setShown(shown === 20 ? (shown) => 200 : (shown) => 20);
+    console.log(shown);
+    console.log("reached");
+  }
+  return (
+    <div>
+      {children}
+      <ShowText
+        buttonColor={buttonColor}
+        expandButtonText={expandButtonText}
+        collapseButtonText={collapseButtonText}
+        onSetShown={handleSetShown}
+      />
+    </div>
+  );
+}
+
+function ShowText({
+  buttonColor,
+  expandButtonText,
+  collapseButtonText,
+  onSetShown,
+}) {
+  console.log(expandButtonText);
+  return (
+    <button style={{ color: buttonColor, border: "none" }}>
+      {expandButtonText}
+    </button>
+  );
 }

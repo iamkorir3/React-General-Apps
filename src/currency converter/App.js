@@ -6,11 +6,11 @@ export default function App() {
   const [firstCunrrency, setFirstCunrrency] = useState("USD");
   const [secondCunrrency, setSecondCunrrency] = useState("EUR");
 
-  function logValues() {
-    console.log(amount);
-    console.log(firstCunrrency);
-    console.log(secondCunrrency);
-  }
+  //   function logValues() {
+  //     console.log(amount);
+  //     console.log(firstCunrrency);
+  //     console.log(secondCunrrency);
+  //   }
 
   useEffect(
     function () {

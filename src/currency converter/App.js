@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [amount, setCurrency] = useState(10);
-  const [output, setOutput] = useState(10);
+  const [amount, setCurrency] = useState(1);
+  const [output, setOutput] = useState("");
   const [firstCunrrency, setFirstCunrrency] = useState("USD");
   const [secondCunrrency, setSecondCunrrency] = useState("EUR");
 
@@ -12,17 +12,21 @@ export default function App() {
     console.log(secondCunrrency);
   }
 
-  useEffect(function () {
-    async function getCurrency() {
-      const res = await fetch(
-        `https://api.frankfurter.app/latest?amount=${amount}&from=${firstCunrrency}&to=${secondCunrrency}`
-      );
+  useEffect(
+    function () {
+      async function getCurrency() {
+        const res = await fetch(
+          `https://api.frankfurter.app/latest?amount=${amount}&from=${firstCunrrency}&to=${secondCunrrency}`
+        );
 
-      const data = await res.json();
-      setOutput(data);
-    }
-    getCurrency();
-  }, []);
+        const data = await res.json();
+        console.log(data.Search);
+        setOutput(data);
+      }
+      getCurrency();
+    },
+    [amount, firstCunrrency, secondCunrrency]
+  );
 
   return (
     <div>
@@ -49,8 +53,8 @@ export default function App() {
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <button onClick={logValues}>LOG</button>
-      <p>{output}</p>
+      {/* <button onClick={logValues}>LOG</button> */}
+      {/* <p>{output}</p> */}
     </div>
   );
 }
